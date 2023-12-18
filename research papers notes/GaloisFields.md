@@ -100,6 +100,64 @@ $A(x) = a_{2}x^{2}+a_{1}+a_{0}$ = $(a_{1},a_{2},a_{3})$
 | 1    | 1    | 0    |
 | 1    | 1    | 1    | 
 
+##### Extension field Addition and Subtraction in $GF(2^m)$ 
 
+Let $A(x),B(x)\  \in \ GF(2^m)$, the sum of 2 elements is computed according to:
+
+$C(x)=A(x)+B(x)={\sum\limits_{i=0}^{m-1}}c_{i}x^{i}$ then $c_{i}\equiv a_{i}+b_{i}\ mod \ 2$  
+
+and the difference/subtraction is computed according to:
+
+$C(x) = A(x) - B(x) = {\sum\limits_{i=0}^{m-1}}c_{i}x^{i}$ then $c_{i} \equiv a_{i}-b_{i} \equiv a_{i}+b_{i}\equiv mod \ 2$ 
+
+Use regular polynomial add or subtract where coefficients are computed in $GF(2)$.
+
+**Example: $GF(2^3)$** 
+$A(x) = x^{2}+x+1$ 
+$B(x)= x^{2}+1$ 
+
+then $A+B= (1+1)x^{2}+x+(1+1)$, 
+since $1+1 \ mod \ 2 = 0$
+$A+B = 0x^{2} + x = x$ 
+
+Note: Addition and subtraction in $GF^{m}$ are the same, they yield same result.
+
+##### Multiplication in $GF(2^m)$ 
+**Example: $GF(2^3)$** 
+$A(x) = x^{2}+x+1$ 
+$B(x)= x^{2}+1$ 
+
+Intuitively, our course of action would be $A(x).B(x) = x^{4}+x^{3}+x^{2}+x^{2}+x+1$
+
+Now, we know that $x^{2}+x^{2} = (1+1)x^{2}= 0$ , we are left with the $x^{4}+x^{3}+x+1$,  resultant is not in our field. So how do we fix this?
+
+We need irreducible polynomials, e.g. their only factors are 1 and polynomial itself.
+So, for extension field multiplication, 
+
+$Let \ A(x), B(x) \ \in \ GF(2^{m})$ and let
+$P(x) \equiv {\sum\limits_{i=0}^{m}p_{i}x^{i}}, \ p_{i} \ \in \ GF(2)$
+be an irreducible polynomial. Multiplication of 2 elements $A(x),B(x)$ is performed as:
+$C(x)\equiv A(x).B(x) \ mod \ P(x)$
+
+So, to solve $A.B = x^{4}+x^{3}+x+1$ with irreducible polynomial $P(x) = x^{3}+x+1$
+ 
+$x^{4}+x^{3}+x+1 : (x^{3}+x+1) = x$+1 (first with x, then with 1)
+$x^{4}+x^{2}+x$ (multiplied $P(x)$ with $x$)
+   $x^{3}+x^{2}+1$ 
++$(x^{3}+x+1)$  (multiplied with 1)
+$x^{2}+x$, here $\equiv A.B \ mod \ P(x)$
+
+###### Question: Where do we get the irreducible polynomial?
+
+For every field $GF(2^m)$, there are several irreducible polynomials, and the result may vary based on the polynomial chosen.
+
+The "AES irreducible polynomial" is $P(x) = x^8 + x^4 + x^3 + x + 1$.
+
+##### Inversion in $GF(2^m)$
+
+The inverse $A^{-1}(x)$ of an element $A(x)$, where $A(x) \in GF(2^m)$, must satisfy:
+$A(x) \cdot A^{-1}(x) \equiv 1 \mod P(x)$
+
+To solve the inverse, we use the extended Euclidean algorithm.
 
 
