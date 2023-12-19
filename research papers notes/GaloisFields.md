@@ -1,21 +1,27 @@
-# Galois Fields for AES
-
 ## Topic: Intro to Galois Fields for the AES
 *Date:* Dec 10, 2023
-
 YT-Link: https://www.youtube.com/watch?v=x1v2tX4_dkQ
-
 Book: Understanding Cryptography
-
 - Author: Christof Paar
+
+---
+
+### Cues/Questions:
+- What is other name of finite fields?
+- What are 2 types of finite fields?
+- What is the difference between 2 types of finite fields?
+- How do we compute addition, subtraction and multiplication in extension fields?
+- What elements can make up a finite field?
+
+---
 
 ### Summary:
 Finite Fields
-    - Also called Galois Fields 
-	    - To understand field, we need to know what a Ring is.
-		    - Ring allows multiple ops like $+,-,\times$ on group.
-		    - To understand Ring, we need to know what a Group is.
-			    - Group is set of elements with some operation which combines 2 element.
+Also called Galois Fields 
+To understand field, we need to know what a Ring is.
+	Ring allows multiple ops like $+,-,\times$ on group.
+	To understand Ring, we need to know what a Group is.
+		Group is set of elements with some operation which combines 2 element.
 #### Group
 - Operation is closed.
 	- For any operation, the result belongs to group.
@@ -27,8 +33,7 @@ Finite Fields
 - For each element in Group, there is an element $a^{-1}$ called inverse of $a$ such that: $$a \circ a^{-1} = 1$$
 	- Not all elements have an inverse.
 
-- Group is **abelian** or **commutative** if $a \circ b = b \circ a$
-
+- Group is **abelian** or **commutative** if $$ a \circ b = b \circ a$$
 #### Field or Fields
 Also called Galois Fields.
 Field is set of numbers in which we can add, multiply, subtract or inverse.
@@ -36,10 +41,10 @@ Field is set of elements with following properties:
 - All elements form an additive group with group operation $+$ and the neutral element $0$.
 - All elements of field except $0$ form a multiplicative group with group operation $\times$ and neutral element $0$.
 - When 2 group operations are mixed, the **distributive law** holds, e.g.  $$for \ all \ a,b,c \in F: a(b+c)=(ab)+(ac)$$
-- Real and complex numbers are fields.
+- $\mathbb{R} \ \&\  \mathbb{C}$ numbers (real and complex numbers) are fields.
 - In cryptography, we almost always need finite sets.
 
-##### Theorem 4.3.1: 
+##### Theorem: 
 Finite fields only exists if they have $p^m$ elements where $p$ is prime and $m$ is a positive integer.
 ###### Example:
 - There is a finite field with 11 elements called $GF(11)$ (Galois field 11 or $GF(11^1)$).
@@ -85,20 +90,21 @@ The elements of a prime field $GF(p)$ are the integers in set $\{0,1..(p-1)\}$ .
 		- if $m=8 \ then$  $a_{8-1}\ . \ x^{8-1}+....+a_{1}+a_0$. 
 		- If, $a_{i} \in GF(2) = \{0,1\}$ then it is a prime field.
 ###### Example: $(GF(2^3))$
-$A(x) = a_{2}x^{2}+a_{1}+a_{0}$ = $(a_{1},a_{2},a_{3})$ 
+$A(x) = a_{2}x^{2}+a_{1}x+a_{0}$ = $(a_{1},a_{2},a_{3})$ 
 - We can represent $GF(2^3)$ (3-bits --> $(a_{1},a_{2},a_{3})$ ) as 8 elements or $GF(8)$.
 - $GF(2^{3)=}\{0,1,x, x+1, x^{2},x^{2}+1, x^{2}+x, x^{2}+x+1\}$ 
+	- Consider $A(x)$ and the table below
 
-| Bits | Bits | Bits |
-| ---- | ---- | ---- |
-| 0    | 0    | 0    |
-| 0    | 0    | 1    |
-| 0    | 1    | 0    |
-| 0    | 1    | 1    |
-| 1    | 0    | 0    |
-| 1    | 0    | 1    |
-| 1    | 1    | 0    |
-| 1    | 1    | 1    | 
+| Bits | Bits | Bits | Representation for $A(x)$ |
+| ---- | ---- | ---- | ------------------------- |
+| 0    | 0    | 0    | 0                         |
+| 0    | 0    | 1    | 1                         |
+| 0    | 1    | 0    | $x$                         |
+| 0    | 1    | 1    | $x+1$                       |
+| 1    | 0    | 0    | $x^2$                     |
+| 1    | 0    | 1    | $x^{2}+1$                 | 
+| 1    | 1    | 0    | $x^2+x$                          |
+| 1    | 1    | 1    | $x^2+x+1$                          |
 
 ##### Extension field Addition and Subtraction in $GF(2^m)$ 
 
@@ -147,6 +153,7 @@ $x^{4}+x^{2}+x$ (multiplied $P(x)$ with $x$)
 +$(x^{3}+x+1)$  (multiplied with 1)
 $x^{2}+x$, here $\equiv A.B \ mod \ P(x)$
 
+**Note**: this is similar to XOR operation where the similar IO are cancelled and differences are kept.
 ###### Question: Where do we get the irreducible polynomial?
 
 For every field $GF(2^m)$, there are several irreducible polynomials, and the result may vary based on the polynomial chosen.
@@ -159,5 +166,3 @@ The inverse $A^{-1}(x)$ of an element $A(x)$, where $A(x) \in GF(2^m)$, must sat
 $A(x) \cdot A^{-1}(x) \equiv 1 \mod P(x)$
 
 To solve the inverse, we use the extended Euclidean algorithm.
-
-
