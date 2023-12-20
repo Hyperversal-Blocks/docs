@@ -40,8 +40,8 @@ Field is set of numbers in which we can add, multiply, subtract or inverse.
 Field is set of elements with following properties:
 - All elements form an additive group with group operation $+$ and the neutral element $0$.
 - All elements of field except $0$ form a multiplicative group with group operation $\times$ and neutral element $0$.
-- When 2 group operations are mixed, the **distributive law** holds, e.g.  $$for \ all \ a,b,c \in F: a(b+c)=(ab)+(ac)$$
-- $\mathbb{R} \ \&\  \mathbb{C}$ numbers (real and complex numbers) are fields.
+- When 2 group operations are mixed, the **distributive law** holds, e.g.  $for \ all \ a,b,c \in F: a(b+c)=(ab)+(ac)$
+- Real and complex numbers are fields.
 - In cryptography, we almost always need finite sets.
 
 ##### Theorem: 
